@@ -1,0 +1,46 @@
+.idea/
+.vscode/
+*.iml
+target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+.settings/
+.DS_Store
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Lombok
+/lombok.config
+
+# Eclipse
+.project
+.classpath
+.recommenders
+
+# Intellij
+/out/
+
+# Mac
+*.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
+
+# env
+.env
+
+# logs
+logs/
+*.log
