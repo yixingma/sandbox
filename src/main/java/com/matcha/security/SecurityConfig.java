@@ -1,4 +1,4 @@
-package com.example.security;
+package com.matcha.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +17,14 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
                 .requestMatchers("/actuator/info").permitAll()
+                .requestMatchers("/api/protected/**").authenticated()
                 .requestMatchers("/actuator/**").authenticated()
                 .anyRequest().authenticated())
-            .oauth2ResourceServer();
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> {}));
 
         return http.build();
     }
