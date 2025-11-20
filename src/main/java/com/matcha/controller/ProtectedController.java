@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/protected")
-public class HelloController {
+public class ProtectedController {
 
     @GetMapping("/hello")
     public String hello() {

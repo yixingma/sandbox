@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class HelloControllerSecurityIT {
+class ProtectedControllerSecurityIT {
 
     private static final String PROTECTED_ENDPOINT = "/api/protected/hello";
     private static final String PUBLIC_ENDPOINT = "/api/public/ping";
@@ -44,4 +44,3 @@ class HelloControllerSecurityIT {
                 .andExpect(content().string("pong"));
     }
 }
-
