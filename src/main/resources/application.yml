@@ -5,14 +5,11 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          # Azure Entra (Azure AD) OAuth2 Resource Server Configuration
-          # Replace {tenant-id} with your Azure AD tenant ID
-          issuer-uri: https://login.microsoftonline.com/{tenant-id}/v2.0
-          jwk-set-uri: https://login.microsoftonline.com/{tenant-id}/discovery/v2.0/keys
+          # Azure Entra OAuth2 Resource Server Configuration
+          issuer-uri: ${AZURE_ISSUER_URI:https://login.microsoftonline.com/common/v2.0}
+          jwk-set-uri: ${AZURE_JWK_SET_URI:https://login.microsoftonline.com/common/discovery/v2.0/keys}
           # Azure Entra Client ID (Application ID) - Required for audience validation
-          # Replace {client-id} with your Azure AD Application (client) ID
-          # This ensures tokens were issued specifically for your application
-          audiences: {client-id}
+          audiences: ${AZURE_CLIENT_ID:your-client-id}
 
 server:
   port: 8080
@@ -26,10 +23,7 @@ management:
         include:
           - health
           - info
-          - metrics
-          - env
-        # Enable all endpoints (use with caution in production)
-        # include: "*"
+        # Enable additional endpoints cautiously
       # Base path for actuator endpoints
       base-path: /actuator
   endpoint:

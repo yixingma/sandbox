@@ -19,7 +19,7 @@ Remove the Spring Security, OAuth2 Resource Server, and Actuator dependencies (l
 ```
 
 ### 2. `SecurityConfig.java`
-**Location:** `/Users/yixingma/workspace/sandbox/src/main/java/com/example/security/SecurityConfig.java`
+**Location:** `/Users/yixingma/workspace/sandbox/src/main/java/com/matcha/security/SecurityConfig.java`
 
 **Changes:**
 - Added `@Configuration` and `@EnableWebSecurity` annotations
@@ -28,22 +28,10 @@ Remove the Spring Security, OAuth2 Resource Server, and Actuator dependencies (l
 - Added security rules for actuator endpoints (health and info are public, others require auth)
 
 **To Backout:**
-Replace the entire file content with:
-```java
-package com.example.security;
+Replace the entire file content with an empty stub (no Spring Security configuration) if you want to remove protection.
 
-/**
- * SecurityConfig was reset by undo operation.
- *
- * If you had a previous SecurityConfig, restore it from your backup or version control.
- */
-public class SecurityConfig {
-
-}
-```
-
-### 3. `application.properties`
-**Location:** `/Users/yixingma/workspace/sandbox/src/main/resources/application.properties`
+### 3. `application.yml`
+**Location:** `/Users/yixingma/workspace/sandbox/src/main/resources/application.yml`
 
 **Changes:**
 - Added Azure Entra OAuth2 configuration properties:
@@ -56,7 +44,7 @@ public class SecurityConfig {
   - `management.endpoint.health.show-details`
 
 **To Backout:**
-Remove lines 4-22 (the Azure Entra OAuth2 and Actuator configuration sections)
+Remove the `spring.security.oauth2` and `management` sections to return to the unsecured state.
 
 ## Implementation Date
 Generated: $(date)
