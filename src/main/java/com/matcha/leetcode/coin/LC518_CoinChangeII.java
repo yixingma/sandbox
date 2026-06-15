@@ -45,4 +45,38 @@ public class LC518_CoinChangeII {
         }
         return dp[amount];
     }
+
+    /*
+     * Notes: why iterate coins in the outer loop (combinations, not permutations)
+     *
+     * Combination vs permutation
+     * - Combination: order does not matter. For amount=5, coins=[1,2,5], {1,2,2} and {2,1,2} are the SAME way.
+     * - Permutation: order matters. {1,2,2}, {2,1,2}, {2,2,1} would be three different ways.
+     * LC518 asks for combinations.
+     *
+     * DP meaning
+     * - dp[i] = number of combinations that sum to i.
+     * - Update: dp[i] += dp[i - coin] means "take every way to make (i - coin), then add one more coin."
+     *
+     * Coins outer (correct for LC518)
+     * - When processing coin=2, dp[i - 2] only contains ways built from coins already processed (1 and 2).
+     * - We never "go back" to add a smaller coin after a larger one in a way that double-counts reorderings.
+     * - Each multiset of coins is built once, in a canonical order (e.g. 1s first, then 2s, then 5s).
+     *
+     * Example: amount=3, coins=[1,2]
+     * - After coin=1: dp = [1,1,1,1]  (ways: {1}, {1,1}, {1,1,1})
+     * - After coin=2: dp[2] += dp[0] -> {2}; dp[3] += dp[1] -> {1,2}
+     * - Result: {1,1,1}, {1,2} -> 2 ways (correct)
+     *
+     * Amount outer (wrong for LC518 — counts permutations)
+     *   for (int i = 1; i <= amount; i++)
+     *       for (int coin : coins)
+     *           dp[i] += dp[i - coin];
+     * - For i=3: coin=1 adds {1,1,1} and {2,1}; coin=2 adds {1,2}
+     * - Result: {1,1,1}, {2,1}, {1,2} -> 3 ways. {2,1} and {1,2} are the same combination but counted twice.
+     *
+     * One-line intuition
+     * - Coins outer: extend combinations by adding this coin type -> each multiset counted once.
+     * - Amount outer: for this total, try every coin -> same coins in different orders counted multiple times.
+     */
 }
