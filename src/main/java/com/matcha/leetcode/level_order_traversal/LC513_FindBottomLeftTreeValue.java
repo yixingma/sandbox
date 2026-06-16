@@ -1,4 +1,4 @@
-package com.matcha.leetcode.levelordertraversal;
+package com.matcha.leetcode.level_order_traversal;
 
 import java.util.LinkedList;
 import java.util.Queue;

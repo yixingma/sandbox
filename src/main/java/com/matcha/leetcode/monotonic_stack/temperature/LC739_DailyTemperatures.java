@@ -1,4 +1,4 @@
-package com.matcha.leetcode.monostack.temperature;
+package com.matcha.leetcode.monotonic_stack.temperature;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package com.matcha.leetcode.meetingroom;
+package com.matcha.leetcode.meeting_room;
 
 import java.util.Arrays;
 
